@@ -1,4 +1,4 @@
-package com.ocr.beans;
+package com.ocr.metier;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.ocr.beans.Utilisateur;
 
 public class Noms {
 	
