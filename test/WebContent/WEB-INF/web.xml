@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  
+  <!-- Page test -->
+  <servlet>
+    <servlet-name>Test</servlet-name>
+    <servlet-class>com.ocr.servlet.Test</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Test</servlet-name>
+    <url-pattern>/bonjour</url-pattern>
+  </servlet-mapping>
+  
+  <!--  Page Accueil -->
+  <servlet>
+    <servlet-name>Accueil</servlet-name>
+    <servlet-class>com.ocr.servlet.Accueil</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Accueil</servlet-name>
+    <url-pattern>/accueil</url-pattern>
+  </servlet-mapping>
+ 
+   <!--  Page formulaire -->
+  <servlet>
+    <servlet-name>Formulaire</servlet-name>
+    <servlet-class>com.ocr.servlet.Formulaire</servlet-class>
+    <!-- Gestion des fichiers -->
+    <multipart-config>
+        <location>C:\Users\emeri\programmation\JEE\DownloadFile\</location> <!-- A adapter chez vous -->
+        <max-file-size>10485760</max-file-size> <!-- taille max de chaque fichier 10 Mo -->
+        <max-request-size>52428800</max-request-size> <!-- taille total accepté 5 x 10 Mo -->
+        <file-size-threshold>1048576</file-size-threshold> <!-- Si cette taille est dépassé le fichier sera stocké dans l'adresse "LOCATION" 1 Mo -->
+    </multipart-config>
+    
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Formulaire</servlet-name>
+    <url-pattern>/LesFormulaires</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Ajout des taglib pour chaque jsp -->
+  <jsp-config>
+    <jsp-property-group>
+      <url-pattern>*.jsp</url-pattern>
+      <include-prelude>/WEB-INF/taglibs.jsp</include-prelude>
+    </jsp-property-group>
+  </jsp-config>
+</web-app>
