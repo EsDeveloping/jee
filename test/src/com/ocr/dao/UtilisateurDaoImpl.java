@@ -1,6 +1,11 @@
 package com.ocr.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ocr.beans.Utilisateur;
@@ -41,14 +46,29 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 	@Override
 	public List<Utilisateur> lister() {
 		List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
-		
 		Connection connexion = null;
 		Statement statement = null;
-		ResulSet resultat = null;
+		ResultSet resultat = null;
+		
+		try {
+			connexion = daoFactory.getConnection();
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery("SELECT nom, prenom FROM noms;");
+			
+			while (resultat.next()) {
+				String nom = resultat.getString("nom");
+				String prenom = resultat.getString("prenom");
+				 
+				Utilisateur utilisateur = new Utilisateur(nom, prenom);
+				utilisateurs.add(utilisateur);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		
 		
-		return null;
+		return utilisateurs;
 	}
 
 }

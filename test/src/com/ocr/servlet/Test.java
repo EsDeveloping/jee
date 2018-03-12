@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ocr.beans.Utilisateur;
+import com.ocr.dao.DaoFactory;
+import com.ocr.dao.UtilisateurDao;
 import com.ocr.metier.Noms;
 
 /**
@@ -21,13 +23,18 @@ import com.ocr.metier.Noms;
 public class Test extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-       
+    private UtilisateurDao utilisateurDao;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Test() {
         super();
-        // TODO Auto-generated constructor stub
+    }
+    
+    public void init() throws ServletException {
+    	DaoFactory daoFactory = DaoFactory.getInstance();
+    	this.utilisateurDao = daoFactory.getUtilisateurDao();
     }
 
 	/**
